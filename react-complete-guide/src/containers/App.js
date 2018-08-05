@@ -8,6 +8,7 @@ import Cockpit from '../components/Cockpit/Cockpit';
 class App extends Component {
   constructor(props) {
     super(props);
+    console.log('[App.js]: Inside constructor', props);
     // Only available to Component children
     this.state = {
       persons: [
@@ -17,6 +18,14 @@ class App extends Component {
       ],
       showPersons: false,
     };
+  }
+
+  componentWillMount() {
+    console.log('[App.js]: Inside componentWillMount');
+  }
+
+  componentDidMount() {
+    console.log('[App.js]: Inside componentDidMount');
   }
 
   // Two-way binding
