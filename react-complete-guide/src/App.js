@@ -8,28 +8,39 @@ export default class App extends Component {
   state = {
     persons: [
       {name: 'Andrew', age: 29},
-    ]
+      {name: 'Genina', age: 26},
+      {name: 'Annie', age: 16},
+    ],
+    showPersons: false,
   };
 
-  switchNameHandler = (newName) => {
-    this.setState(
-        {
-          persons: [
-            {name: newName, age: 26},
-          ]
-        }
-    )
-  };
+  // switchNameHandler = (newName) => {
+  //   this.setState({
+  //       persons: [
+  //         {name: newName, age: 29},
+  //       ]
+  //   })
+  // };
 
   // Two-way binding
   nameChangedHandler = (event) => {
-    this.setState(
-        {
+    this.setState({
           persons: [
             {name: event.target.value, age: 26},
           ]
-        }
-    )
+    })
+  };
+
+  togglePersonHandler = () => {
+    const doesShow = this.state.showPersons;
+    this.setState({ showPersons: !doesShow })
+  };
+
+  deletePersonHandler = (personIndex) => {
+    // const persons = this.state.persons.slice();  // shallow copy
+    const persons = [...this.state.persons];  // spread operator
+    persons.splice(personIndex, 1);
+    this.setState({persons: persons})
   };
 
   render() {
@@ -42,21 +53,55 @@ export default class App extends Component {
       cursor: 'pointer'
     };
 
+    let persons = null;
+    if (this.state.showPersons) {
+      persons = (
+        <div>
+          {this.state.persons.map((person, index) => {
+            return <Person
+                click={this.deletePersonHandler.bind(this, index)}
+                name={person.name}
+                age={person.age} />
+          })}
+          {/*<Person*/}
+              {/*name={this.state.persons[0].name}*/}
+              {/*age={this.state.persons[0].age}*/}
+              {/*click={this.switchNameHandler.bind(this, 'Annie')}*/}
+              {/*nameChange={this.nameChangedHandler} />*/}
+        </div>
+      );
+    }
+
     // JSX Return format
     return (
       <div className="App">
         <h1>Hello, World!</h1>
         {/* Inline Styling */}
+        {/*<button style={style}*/}
+                {/*onClick={() => { return this.switchNameHandler('Annie'); }}>Switch Name</button>*/}
         <button style={style}
-            onClick={() => { return this.switchNameHandler('Annie'); }}>Switch Name</button>
+            onClick={this.togglePersonHandler}>Show Person</button>
         {/*<Person name="Andrew" age="29">My Hobbies: coding!</Person>*/}
 
         {/* Using state properties */}
-        <Person
-            name={this.state.persons[0].name}
-            age={this.state.persons[0].age}
-            click={this.switchNameHandler.bind(this, 'Annie')}
-            nameChange={this.nameChangedHandler} />
+        {/*<Person*/}
+            {/*name={this.state.persons[0].name}*/}
+            {/*age={this.state.persons[0].age}*/}
+            {/*click={this.switchNameHandler.bind(this, 'Annie')}*/}
+            {/*nameChange={this.nameChangedHandler} />*/}
+
+        {/* Interpolation for React JS code with Ternary Conditions */}
+        {/*{this.state.showPersons ?*/}
+            {/*<div>*/}
+              {/*<Person*/}
+                  {/*name={this.state.persons[0].name}*/}
+                  {/*age={this.state.persons[0].age}*/}
+                  {/*click={this.switchNameHandler.bind(this, 'Annie')}*/}
+                  {/*nameChange={this.nameChangedHandler} />*/}
+            {/*</div>*/}
+            {/*: null*/}
+        {/*}*/}
+        {persons}
       </div>
     );
 
