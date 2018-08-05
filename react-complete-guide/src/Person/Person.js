@@ -8,8 +8,8 @@ const person = (props) => {
         {/*<p onClick={props.click}>I'm {props.name} and I am {props['age']} years old</p>*/}
         <br />
         {/* event properties are passed by JS automatically */}
-        <input type="text" onChange={props.nameChange} value={props.name} readOnly={false} />
-        <p>I'm {props.name} and I am {props['age']} years old</p>
+        <input type="text" onChange={props.changed} value={props.name} readOnly={false} />
+        <p onClick={props.click}>I'm {props.name} and I am {props['age']} years old</p>
         <p>{props.children}</p>
       </div>
   );
