@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import './App.css';
+import Radium from 'radium';
 import Person from './Person/Person';
 
 // CLASS-BASED COMPONENTS
-export default class App extends Component {
+class App extends Component {
   // Only available to Component children
   state = {
     persons: [
@@ -54,12 +55,16 @@ export default class App extends Component {
 
   render() {
     const style = {
-      backgroundColor: 'red',
+      backgroundColor: 'green',
       fontColor: 'white',
       font: 'inherit',
       border: '1px solid red',
       padding: '8px',
-      cursor: 'pointer'
+      cursor: 'pointer',
+      ':hover': {
+        backgroundColor: 'red',
+        color: 'black'
+      }
     };
 
     let persons = null;
@@ -81,12 +86,29 @@ export default class App extends Component {
               {/*nameChange={this.nameChangedHandler} />*/}
         </div>
       );
+
+      style.backgroundColor = 'red';
+      style[':hover'] = {
+        backgroundColor: 'salmon',
+        color: 'black'
+      }
+    }
+
+    // Dynamic changing of className
+    const classes = [];
+    if (this.state.persons.length <= 2) {
+      classes.push('red')
+    }
+
+    if (this.state.persons.length <= 1) {
+      classes.push('bold');
     }
 
     // JSX Return format
     return (
       <div className="App">
         <h1>Hello, World!</h1>
+        <p className={classes.join(' ')}>I'm really working!</p>
         {/* Inline Styling */}
         {/*<button style={style}*/}
                 {/*onClick={() => { return this.switchNameHandler('Annie'); }}>Switch Name</button>*/}
@@ -125,3 +147,5 @@ export default class App extends Component {
     );*/
   }
 }
+
+export default Radium(App);
