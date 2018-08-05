@@ -5,15 +5,18 @@ import Person from './Person/Person';
 
 // CLASS-BASED COMPONENTS
 class App extends Component {
-  // Only available to Component children
-  state = {
-    persons: [
-      {id: 1, name: 'Andrew', age: 29},
-      {id: 2, name: 'Genina', age: 26},
-      {id: 3, name: 'Annie', age: 16},
-    ],
-    showPersons: false,
-  };
+  constructor(props) {
+    super(props);
+    // Only available to Component children
+    this.state = {
+      persons: [
+        {id: 1, name: 'Andrew', age: 29},
+        {id: 2, name: 'Genina', age: 26},
+        {id: 3, name: 'Annie', age: 16},
+      ],
+      showPersons: false,
+    };
+  }
 
   // switchNameHandler = (newName) => {
   //   this.setState({
