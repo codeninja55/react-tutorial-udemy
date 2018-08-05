@@ -28,19 +28,6 @@
       "exports": "never",
       "functions": "never"
     }],
-    "comma-spacing": ["error", { "before": false, "after": true }],
-
-    "react/jsx-no-bind": ["error", {
-      "allowArrowFunctions": true,
-      "allowBind": false,
-      "ignoreRefs": true
-    }],
-    "react/no-did-update-set-state": "error",
-    "react/no-unknown-property": "error",
-    "react/no-unused-prop-types": "error",
-    "react/prop-types": "error",
-    "react/react-in-jsx-scope": "error"
+    "comma-spacing": ["error", { "before": false, "after": true }]
   }
-
-//  "extends": [ "standard-jsx" ]
 }
