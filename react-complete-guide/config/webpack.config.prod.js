@@ -174,11 +174,9 @@ module.exports = {
                     loader: require.resolve('style-loader'),
                     options: {
                       importLoaders: 1,
+                      hmr: false,
                       modules: true,
                       localIdentName: '[name]__[local]__[hash:base64:5]',
-                      minimize: true,
-                      sourceMap: shouldUseSourceMap,
-                      hmr: false,
                     },
                   },
                   use: [
@@ -187,6 +185,8 @@ module.exports = {
                       options: {
                         importLoaders: 1,
                         minimize: true,
+                        modules: true,
+                        localIdentName: '[name]__[local]__[hash:base64:5]',
                         sourceMap: shouldUseSourceMap,
                       },
                     },

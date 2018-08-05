@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import classes from '../containers/App.css';
-import './App.css';
+import classes from './App.css';
 import PersonsList from '../components/PersonList/PersonsList';
+import Cockpit from '../components/Cockpit/Cockpit';
 // import Radium from 'radium';
 
 // CLASS-BASED COMPONENTS
@@ -51,40 +51,22 @@ class App extends Component {
 
   render() {
     let persons = null;
-    let btnClass = '';
 
     if (this.state.showPersons) {
-      persons = (
-          <div>
-            <PersonsList
-                persons={this.state.persons}
-                clicked={this.deletePersonHandler}
-                changed={this.nameChangedHandler} />
-          </div>
-      );
-
-      btnClass = classes.Red;
-    }
-
-    // Dynamic changing of className
-    const assignedClasses = [];
-    if ( this.state.persons.length <= 2 ) {
-      assignedClasses.push( classes.red ); // classes = ['red']
-    }
-    if ( this.state.persons.length <= 1 ) {
-      assignedClasses.push( classes.bold ); // classes = ['red', 'bold']
+      persons = <PersonsList
+          persons={this.state.persons}
+          clicked={this.deletePersonHandler}
+          changed={this.nameChangedHandler} />;
     }
 
     // JSX Return format
     return (
-      <div className="App">
-        <h1>Hello, World!</h1>
-        <p className={assignedClasses}>I'm really working!</p>
-        {/* Inline Styling */}
-        {/*<button style={style}*/}
-                {/*onClick={() => { return this.switchNameHandler('Annie'); }}>Switch Name</button>*/}
-        <button className={btnClass}
-            onClick={this.togglePersonHandler}>Show Person</button>
+      <div className={classes.App}>
+        <Cockpit
+            appTitle={this.props.title}
+            showPersons={this.state.showPersons}
+            persons={this.state.persons}
+            clicked={this.togglePersonHandler}/>
         {persons}
       </div>
     );
