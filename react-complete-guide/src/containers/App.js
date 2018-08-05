@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
+import classes from '../containers/App.css';
 import './App.css';
-import Person from '../components/Person/Person';
-import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
+import PersonsList from '../components/PersonList/PersonsList';
 // import Radium from 'radium';
 
 // CLASS-BASED COMPONENTS
@@ -18,14 +18,6 @@ class App extends Component {
       showPersons: false,
     };
   }
-
-  // switchNameHandler = (newName) => {
-  //   this.setState({
-  //       persons: [
-  //         {name: newName, age: 29},
-  //       ]
-  //   })
-  // };
 
   // Two-way binding
   nameChangedHandler = (event, id) => {
@@ -58,99 +50,44 @@ class App extends Component {
   };
 
   render() {
-    const style = {
-      backgroundColor: 'green',
-      fontColor: 'white',
-      font: 'inherit',
-      border: '1px solid red',
-      padding: '8px',
-      cursor: 'pointer',
-      /*':hover': {
-        backgroundColor: 'red',
-        color: 'black'
-      }*/
-    };
-
     let persons = null;
+    let btnClass = '';
+
     if (this.state.showPersons) {
       persons = (
-        <div>
-          {this.state.persons.map((person, index) => {
-            return <ErrorBoundary key={person.id}>
-              <Person
-                  click={this.deletePersonHandler.bind(this, index)}
-                  name={person.name}
-                  age={person.age}
-                  changed={(event) => this.nameChangedHandler(event, person.id)} />
-            </ErrorBoundary>
-          })}
-          {/*<Person*/}
-              {/*name={this.state.persons[0].name}*/}
-              {/*age={this.state.persons[0].age}*/}
-              {/*click={this.switchNameHandler.bind(this, 'Annie')}*/}
-              {/*nameChange={this.nameChangedHandler} />*/}
-        </div>
+          <div>
+            <PersonsList
+                persons={this.state.persons}
+                clicked={this.deletePersonHandler}
+                changed={this.nameChangedHandler} />
+          </div>
       );
 
-      style.backgroundColor = 'red';
-      // Only usable if Radium imported
-      /*style[':hover'] = {
-        backgroundColor: 'salmon',
-        color: 'black'
-      }*/
+      btnClass = classes.Red;
     }
 
     // Dynamic changing of className
-    const classes = [];
-    if (this.state.persons.length <= 2) {
-      classes.push('red')
+    const assignedClasses = [];
+    if ( this.state.persons.length <= 2 ) {
+      assignedClasses.push( classes.red ); // classes = ['red']
     }
-
-    if (this.state.persons.length <= 1) {
-      classes.push('bold');
+    if ( this.state.persons.length <= 1 ) {
+      assignedClasses.push( classes.bold ); // classes = ['red', 'bold']
     }
 
     // JSX Return format
     return (
       <div className="App">
         <h1>Hello, World!</h1>
-        <p className={classes.join(' ')}>I'm really working!</p>
+        <p className={assignedClasses}>I'm really working!</p>
         {/* Inline Styling */}
         {/*<button style={style}*/}
                 {/*onClick={() => { return this.switchNameHandler('Annie'); }}>Switch Name</button>*/}
-        <button style={style}
+        <button className={btnClass}
             onClick={this.togglePersonHandler}>Show Person</button>
-        {/*<Person name="Andrew" age="29">My Hobbies: coding!</Person>*/}
-
-        {/* Using state properties */}
-        {/*<Person*/}
-            {/*name={this.state.persons[0].name}*/}
-            {/*age={this.state.persons[0].age}*/}
-            {/*click={this.switchNameHandler.bind(this, 'Annie')}*/}
-            {/*nameChange={this.nameChangedHandler} />*/}
-
-        {/* Interpolation for React JS code with Ternary Conditions */}
-        {/*{this.state.showPersons ?*/}
-            {/*<div>*/}
-              {/*<Person*/}
-                  {/*name={this.state.persons[0].name}*/}
-                  {/*age={this.state.persons[0].age}*/}
-                  {/*click={this.switchNameHandler.bind(this, 'Annie')}*/}
-                  {/*nameChange={this.nameChangedHandler} />*/}
-            {/*</div>*/}
-            {/*: null*/}
-        {/*}*/}
         {persons}
       </div>
     );
-
-    // React build original format
-    // return React.createElement('h1', null, 'Does this work now?');
-
-    // React build original format with nesting
-    /*return React.createElement('div', {className: 'App'},
-        React.createElement('h1', null, 'Does this work yet?')
-    );*/
   }
 }
 
