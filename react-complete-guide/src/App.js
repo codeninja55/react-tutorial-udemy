@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
-import Radium from 'radium';
 import Person from './Person/Person';
+// import Radium from 'radium';
 
 // CLASS-BASED COMPONENTS
 class App extends Component {
@@ -61,10 +61,10 @@ class App extends Component {
       border: '1px solid red',
       padding: '8px',
       cursor: 'pointer',
-      ':hover': {
+      /*':hover': {
         backgroundColor: 'red',
         color: 'black'
-      }
+      }*/
     };
 
     let persons = null;
@@ -88,10 +88,11 @@ class App extends Component {
       );
 
       style.backgroundColor = 'red';
-      style[':hover'] = {
+      // Only usable if Radium imported
+      /*style[':hover'] = {
         backgroundColor: 'salmon',
         color: 'black'
-      }
+      }*/
     }
 
     // Dynamic changing of className
@@ -148,4 +149,6 @@ class App extends Component {
   }
 }
 
-export default Radium(App);
+// If using radium, must wrap App
+// export default Radium(App);
+export default App;
