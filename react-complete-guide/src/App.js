@@ -9,7 +9,9 @@ export default class App extends Component {
     return (
       <div className="App">
         <h1>Hello, World!</h1>
-        <Person />
+        <Person name="Andrew" age="29">My Hobbies: coding!</Person>
+        <Person name="Genina" age="26" />
+        <Person name="Annie" age="16" />
       </div>
     );
 
