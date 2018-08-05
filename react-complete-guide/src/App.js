@@ -7,9 +7,9 @@ export default class App extends Component {
   // Only available to Component children
   state = {
     persons: [
-      {name: 'Andrew', age: 29},
-      {name: 'Genina', age: 26},
-      {name: 'Annie', age: 16},
+      {id: 1, name: 'Andrew', age: 29},
+      {id: 2, name: 'Genina', age: 26},
+      {id: 3, name: 'Annie', age: 16},
     ],
     showPersons: false,
   };
@@ -23,12 +23,21 @@ export default class App extends Component {
   // };
 
   // Two-way binding
-  nameChangedHandler = (event) => {
-    this.setState({
-          persons: [
-            {name: event.target.value, age: 26},
-          ]
-    })
+  nameChangedHandler = (event, id) => {
+    const personIndex = this.state.persons.findIndex((p) => {
+      return p.id === id;
+    });
+    // const person = Object.assign({}, this.state.persons[personIndex]);
+    const person = {
+        ...this.state.persons[personIndex]
+    };  // Spread operator
+
+    person.name = event.target.value;
+
+    const persons = [...this.state.persons];
+    persons[personIndex] = person;
+
+    this.setState({ persons: persons});
   };
 
   togglePersonHandler = () => {
@@ -61,7 +70,9 @@ export default class App extends Component {
             return <Person
                 click={this.deletePersonHandler.bind(this, index)}
                 name={person.name}
-                age={person.age} />
+                age={person.age}
+                key={person.id}
+                changed={(event) => this.nameChangedHandler(event, person.id)}/>
           })}
           {/*<Person*/}
               {/*name={this.state.persons[0].name}*/}
