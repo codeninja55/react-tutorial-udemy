@@ -9,7 +9,7 @@ const person = (props) => {
         <br />
         {/* event properties are passed by JS automatically */}
         <input type="text" onChange={props.changed} value={props.name} readOnly={false} />
-        <p onClick={props.click}>I'm {props.name} and I am {props.age} years old</p>
+        <p onClick={props.clicked}>I'm {props.name} and I am {props.age} years old</p>
       </div>
   );
 };
