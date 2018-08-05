@@ -21,8 +21,8 @@ class PersonsList extends Component {
       name={person.name}
       age={person.age}
       key={person.id}
-      changed={(event) => this.changed(event, person.id)} />
-    })
+      changed={(event) => this.changed(event, person.id) } />;
+    });
   }
 }
 

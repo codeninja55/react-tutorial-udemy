@@ -14,9 +14,9 @@ class App extends Component {
       persons: [
         {id: 1, name: 'Andrew', age: 29},
         {id: 2, name: 'Genina', age: 26},
-        {id: 3, name: 'Annie', age: 16},
+        {id: 3, name: 'Annie', age: 16}
       ],
-      showPersons: false,
+      showPersons: false
     };
   }
 
@@ -48,14 +48,14 @@ class App extends Component {
 
   togglePersonHandler = () => {
     const doesShow = this.state.showPersons;
-    this.setState({ showPersons: !doesShow })
+    this.setState({ showPersons: !doesShow });
   };
 
   deletePersonHandler = (personIndex) => {
     // const persons = this.state.persons.slice();  // shallow copy
     const persons = [...this.state.persons];  // spread operator
     persons.splice(personIndex, 1);
-    this.setState({persons: persons})
+    this.setState({persons: persons});
   };
 
   render() {
