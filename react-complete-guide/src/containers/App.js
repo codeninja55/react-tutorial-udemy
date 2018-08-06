@@ -4,6 +4,9 @@ import PersonsList from '../components/PersonList/PersonsList';
 import Cockpit from '../components/Cockpit/Cockpit';
 // import Radium from 'radium';
 
+// New context API for global values
+export const AuthContext = React.createContext(false);
+
 // CLASS-BASED COMPONENTS
 class App extends PureComponent {
   constructor(props) {
@@ -85,7 +88,8 @@ class App extends PureComponent {
           persons={this.state.persons}
           clicked={this.deletePersonHandler}
           changed={this.nameChangedHandler}
-          isAuthenticated={this.state.authenticated} />;
+          // isAuthenticated={this.state.authenticated}
+      />;
     }
 
     // JSX Return format
@@ -98,7 +102,9 @@ class App extends PureComponent {
             persons={this.state.persons}
             clicked={this.togglePersonHandler}
             login={this.loginHandler} />
-        {persons}
+        <AuthContext.Provider value={this.state.authenticated}>
+          {persons}
+        </AuthContext.Provider>
       </div>
     );
   }

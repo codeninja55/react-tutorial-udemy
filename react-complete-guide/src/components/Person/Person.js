@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import classes from './Person.css';
 import Aux from '../../hoc/Aux';
 import withClass from '../../hoc/withClass';
+import AuthContext from '../PersonList/PersonsList';
 
 /*const person = (props) => {
   return (
@@ -43,7 +44,9 @@ class Person extends Component {
     return (
       <Aux>
         {/* event properties are passed by JS automatically */}
-        {this.props.authenticated ? <p>I'm Authenticated</p> : null}
+        <AuthContext.Consumer>
+          {auth => auth ? <p>I'm Authenticated</p> : null}
+        </AuthContext.Consumer>
         <input
             // ref={(input) => { this.inputElement = input; } }
             ref={this.inputElement}  // New React 16.3 wrapper method

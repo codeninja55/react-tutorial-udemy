@@ -22,7 +22,7 @@ class PersonsList extends PureComponent {
       age={person.age}
       position={index}
       key={person.id}
-      authenticated={this.props.isAuthenticated}
+      // authenticated={this.props.isAuthenticated}
       changed={(event) => this.changed(event, person.id) } />;
     });
   }
