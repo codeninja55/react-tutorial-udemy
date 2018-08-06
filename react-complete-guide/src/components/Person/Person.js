@@ -1,7 +1,10 @@
 // FUNCTIONAL COMPONENTS
 // Another way of making a component, still with ES6 convention and JSX
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import classes from './Person.css';
 import Aux from '../../hoc/Aux';
+import withClass from '../../hoc/withClass';
 
 /*const person = (props) => {
   return (
@@ -42,7 +45,7 @@ class Person extends Component {
         {/* event properties are passed by JS automatically */}
         <input
             // ref={(input) => { this.inputElement = input; } }
-            ref={this.inputElement}  {// New React 16.3 wrapper method}
+            ref={this.inputElement}  // New React 16.3 wrapper method
             type="text"
             onChange={this.props.changed}
             value={this.props.name}
@@ -55,7 +58,7 @@ class Person extends Component {
 
 // Type checking for prop properties with KV pairs
 Person.propTypes = {
-  click: PropTypes.func,
+  clicked: PropTypes.func,
   name: PropTypes.string,
   age: PropTypes.number,
   changed: PropTypes.func
