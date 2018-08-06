@@ -1,9 +1,6 @@
 // FUNCTIONAL COMPONENTS
 // Another way of making a component, still with ES6 convention and JSX
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
-import classes from './Person.css';
-import withClass from '../../hoc/withClass';
 import Aux from '../../hoc/Aux';
 
 /*const person = (props) => {
@@ -19,17 +16,37 @@ import Aux from '../../hoc/Aux';
 export default person;*/
 
 class Person extends Component {
+
+  constructor(props) {
+    super(props);
+    this.inputElement = React.createRef();  // New React 16.3 ref method
+  }
+
   shouldComponentUpdate(nextProps, nextState, nextContext) {
-    console.log('[UPDATE App.js]: Inside shouldComponentUpdate()',
+    console.log('[UPDATE Person.js]: Inside shouldComponentUpdate()',
         nextProps, nextState, nextContext);
     return nextProps.persons !== this.props.persons;
+  }
+
+  componentDidMount() {
+    console.log('[CREATE Person.js]: Inside componentDidMount()');
+    if (this.props.position === 0) {
+      // this.inputElement.focus();
+      this.inputElement.current.focus();  // new React 16.3 ref element access
+    }
   }
 
   render() {
     return (
       <Aux>
         {/* event properties are passed by JS automatically */}
-        <input type="text" onChange={this.props.changed} value={this.props.name} readOnly={false} />
+        <input
+            // ref={(input) => { this.inputElement = input; } }
+            ref={this.inputElement}  {// New React 16.3 wrapper method}
+            type="text"
+            onChange={this.props.changed}
+            value={this.props.name}
+            readOnly={false} />
         <p onClick={this.props.clicked}>I'm {this.props.name} and I am {this.props.age} years old</p>
       </Aux>
     );
