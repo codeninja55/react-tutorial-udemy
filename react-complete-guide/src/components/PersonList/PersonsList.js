@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import Person from '../Person/Person';
 
 /*const personsList = (props) => (props.persons.map((person, index) => {
@@ -13,7 +13,7 @@ import Person from '../Person/Person';
 
 export default personsList;*/
 
-class PersonsList extends Component {
+class PersonsList extends PureComponent {
   render() {
     return this.props.persons.map((person, index) => {
     return <Person

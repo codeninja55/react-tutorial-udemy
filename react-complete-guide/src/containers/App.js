@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import classes from './App.css';
 import PersonsList from '../components/PersonList/PersonsList';
 import Cockpit from '../components/Cockpit/Cockpit';
 // import Radium from 'radium';
 
 // CLASS-BASED COMPONENTS
-class App extends Component {
+class App extends PureComponent {
   constructor(props) {
     super(props);
     console.log('[App.js]: Inside constructor', props);
@@ -58,6 +58,14 @@ class App extends Component {
     this.setState({persons: persons});
   };
 
+  // Only run through update if we need to update - more efficient.
+  /*shouldComponentUpdate(nextProps, nextState, nextContext) {
+    console.log('[UPDATE App.js]: Inside shouldComponentUpdate()',
+        nextProps, nextState, nextContext);
+    return nextState.persons !== this.state.persons ||
+        nextState.showPersons !== this.state.showPersons;
+  };*/
+
   render() {
     let persons = null;
 
@@ -71,6 +79,7 @@ class App extends Component {
     // JSX Return format
     return (
       <div className={classes.App}>
+        <button onClick={() => { this.setState({showPersons: true});}}>Show Persons</button>
         <Cockpit
             appTitle={this.props.title}
             showPersons={this.state.showPersons}
