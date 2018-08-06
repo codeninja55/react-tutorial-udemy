@@ -1,6 +1,7 @@
 // FUNCTIONAL COMPONENTS
 // Another way of making a component, still with ES6 convention and JSX
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import classes from './Person.css';
 import withClass from '../../hoc/withClass';
 import Aux from '../../hoc/Aux';
@@ -34,5 +35,13 @@ class Person extends Component {
     );
   }
 }
+
+// Type checking for prop properties with KV pairs
+Person.propTypes = {
+  click: PropTypes.func,
+  name: PropTypes.string,
+  age: PropTypes.number,
+  changed: PropTypes.func
+};
 
 export default withClass(Person, classes.Person);
