@@ -17,7 +17,8 @@ class App extends PureComponent {
         {id: 3, name: 'Annie', age: 16}
       ],
       showPersons: false,
-      toggleClicked: 0
+      toggleClicked: 0,
+      authenticated: false
     };
   }
 
@@ -48,7 +49,7 @@ class App extends PureComponent {
   };
 
   togglePersonHandler = () => {
-    const doesShow = this.state.showPersons;
+    // const doesShow = this.state.showPersons;
     // Use functional call if you plan on using previous State properties to update
     // setState() runs asynchronously
     this.setState((prevState, props) => {
@@ -72,6 +73,10 @@ class App extends PureComponent {
         nextState.showPersons !== this.state.showPersons;
   };*/
 
+  loginHandler = () => {
+    this.setState({authenticated: true});
+  };
+
   render() {
     let persons = null;
 
@@ -79,7 +84,8 @@ class App extends PureComponent {
       persons = <PersonsList
           persons={this.state.persons}
           clicked={this.deletePersonHandler}
-          changed={this.nameChangedHandler} />;
+          changed={this.nameChangedHandler}
+          isAuthenticated={this.state.authenticated} />;
     }
 
     // JSX Return format
@@ -90,7 +96,8 @@ class App extends PureComponent {
             appTitle={this.props.title}
             showPersons={this.state.showPersons}
             persons={this.state.persons}
-            clicked={this.togglePersonHandler}/>
+            clicked={this.togglePersonHandler}
+            login={this.loginHandler} />
         {persons}
       </div>
     );

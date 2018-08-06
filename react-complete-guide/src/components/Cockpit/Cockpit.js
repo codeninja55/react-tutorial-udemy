@@ -27,6 +27,7 @@ const cockpit = (props) => {
       {/* Inline Styling */}
       <button className={btnClass}
               onClick={props.clicked}>Show Person</button>
+      <button onClick={props.login}>Log in</button>
     </Fragment>
     /*</Aux>*/
   );

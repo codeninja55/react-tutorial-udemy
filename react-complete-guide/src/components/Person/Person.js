@@ -43,6 +43,7 @@ class Person extends Component {
     return (
       <Aux>
         {/* event properties are passed by JS automatically */}
+        {this.props.authenticated ? <p>I'm Authenticated</p> : null}
         <input
             // ref={(input) => { this.inputElement = input; } }
             ref={this.inputElement}  // New React 16.3 wrapper method
